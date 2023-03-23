@@ -1,6 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import nodeReducer from "../features/nodes/nodeSlice";
+import connectionReducer from "../features/connections/connectionSlice";
 
 export const store = configureStore({
-  reducer: {},
-})
+  reducer: {
+    nodes: nodeReducer,
+    connections: connectionReducer,
+    middleware: [
+      ...getDefaultMiddleware({
+        serializableCheck: false,
+      }),
+    ],
+  },
+});
