@@ -27,6 +27,12 @@ export const nodeSlice = createSlice({
       state.nodes = action.payload;
       localStorage.setItem("nodes", JSON.stringify(action.payload));
     },
+    editNode: (state, action) => {
+      const selectedNode = state.nodes.find(
+        (item) => item.id === action.payload.id
+      );
+      selectedNode.title = action.payload.title;
+    },
     handleCreateNode: (state, { payload }) => {
       const point = {
         x: payload.serializable.x / payload.zoom,
@@ -59,5 +65,5 @@ export const nodeSlice = createSlice({
   },
 });
 
-export const { setNodes, handleCreateNode } = nodeSlice.actions;
+export const { setNodes, handleCreateNode, editNode } = nodeSlice.actions;
 export default nodeSlice.reducer;
