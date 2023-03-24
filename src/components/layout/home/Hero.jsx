@@ -11,7 +11,7 @@ const Hero = () => {
         Create a clear, easy-to-read visualization of your process using our
         process mapping software.
       </p>
-      <div className="sm:-mt-16 2xl:-mt-32">
+      <div className="sm:-mt-16 2xl:-mt-32 relative -z-10">
         <ProcessLottie />
       </div>
     </div>
