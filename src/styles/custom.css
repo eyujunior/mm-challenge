@@ -13,16 +13,16 @@ div .flowchart-svg {
 }
 
 .flowchart-svg ellipse {
-  fill: #ff7e29;
-  stroke: black;
+  fill: #ff7f291a;
+  stroke: #ff7f29;
 }
 .flowchart-svg rect {
-  stroke: black;
-  fill: rgb(240, 222, 98);
+  stroke: rgb(240, 222, 98);
+  fill: rgb(255, 251, 228);
 }
 .flowchart-svg polygon {
-  stroke: black;
-  fill: #5cee94;
+  stroke: #1f6ee4;
+  fill: #1f6ee41a;
 }
 .flowchart-toolbar-item {
   margin: 0.2rem auto;
@@ -33,7 +33,6 @@ div .flowchart-svg ellipse,
 div .flowchart-svg rect,
 div .flowchart-svg polygon {
   stroke-dasharray: 10;
-  stroke: #555;
   animation: dash 1.5s ease-in-out forwards;
 }
 
