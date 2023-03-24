@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Flowchart from "flowchart-react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -12,16 +12,9 @@ import Modal from "../common/Modal";
 const FlowchartContainer = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState("");
-  const [selectedNode, setSelectedNode] = useState("");
+  const [selectedNode, setSelectedNode] = useState({});
   const { nodes } = useSelector((state) => state.nodes);
   const { connections } = useSelector((state) => state.connections);
-
-  useEffect(() => {
-    if (title) {
-      dispatch(editNode(selectedNode));
-    }
-  }, [selectedNode]);
 
   // handle node creation on background double click
   const onDoubleClick = (event, zoom) => {
@@ -33,6 +26,7 @@ const FlowchartContainer = () => {
     dispatch(handleCreateNode({ serializable, zoom }));
   };
 
+  // handles changes like delete and
   const onChange = (nodes, connections) => {
     dispatch(setNodes(nodes));
     dispatch(setConnections(connections));
@@ -41,17 +35,22 @@ const FlowchartContainer = () => {
   const onCancel = () => setShowModal(false);
 
   const onSave = () => {
-    setSelectedNode((prev) => {
-      return { ...prev, title };
-    });
+    dispatch(editNode(selectedNode));
     onCancel();
+    setSelectedNode({});
   };
 
   const handleDoubleClick = (node) => {
     setShowModal(true);
     setSelectedNode(node);
-    setTitle(node.title);
   };
+
+  const setTitle = (value) => {
+    setSelectedNode((prev) => {
+      return { ...selectedNode, title: value };
+    });
+  };
+
   return (
     <div className="my-16">
       {showModal && (
@@ -59,7 +58,7 @@ const FlowchartContainer = () => {
           type="text"
           label="edit title"
           id="title"
-          value={title}
+          value={selectedNode.title}
           setValue={setTitle}
           onSave={onSave}
           onCancel={onCancel}

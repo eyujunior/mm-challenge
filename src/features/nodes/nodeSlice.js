@@ -32,6 +32,7 @@ export const nodeSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       selectedNode.title = action.payload.title;
+      localStorage.setItem("nodes", JSON.stringify(current(state.nodes)));
     },
     handleCreateNode: (state, { payload }) => {
       const point = {
