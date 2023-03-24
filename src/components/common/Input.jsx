@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Input = ({ label, value, setValue, type, id }) => {
+const Input = ({ label, value, setValue, type, id, error }) => {
   return (
     <div>
       <label
@@ -18,6 +18,11 @@ const Input = ({ label, value, setValue, type, id }) => {
         required
         placeholder=""
       />
+      {error && (
+        <p className="text-xs text-red-500 mt-1 capitalize">
+          title can't be empty
+        </p>
+      )}
     </div>
   );
 };
