@@ -6,13 +6,18 @@ import {
   handleCreateNode,
   editNode,
 } from "../../features/nodes/nodeSlice";
-import { setConnections } from "../../features/connections/connectionSlice";
+import {
+  editConnection,
+  setConnections,
+} from "../../features/connections/connectionSlice";
 import Modal from "../common/Modal";
 import EditNodeTitleContent from "./EditNodeTitleContent";
+import EditConnectionTypeContent from "./EditConnectionTypeContent";
 const FlowchartContainer = () => {
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
+  const [modal, setModal] = useState({ show: false, type: "" });
   const [selectedNode, setSelectedNode] = useState({});
+  const [selectedConnection, setSelectedConnection] = useState({});
   const { nodes } = useSelector((state) => state.nodes);
   const { connections } = useSelector((state) => state.connections);
 
@@ -33,47 +38,77 @@ const FlowchartContainer = () => {
   };
 
   // close modal
-  const onCancel = () => setShowModal(false);
+  const onCancel = () => setModal({ ...modal, show: false });
 
-  const onSave = () => {
+  const onNodeSave = () => {
     dispatch(editNode(selectedNode));
     onCancel();
     setSelectedNode({});
   };
+  const onConnectionSave = () => {
+    console.log(selectedConnection);
+    dispatch(editConnection(selectedConnection));
+    onCancel();
+    setSelectedConnection({});
+  };
 
   // handles node title update
   const handleNodeDoubleClick = (node) => {
-    setShowModal(true);
+    setModal({
+      show: true,
+      type: "NODE",
+    });
     setSelectedNode(node);
+  };
+  // handles connection type on decision
+  const handleConnectionDoubleClick = (node) => {
+    const getSourceNode = nodes.find((item) => item.id === node.source.id);
+    if (getSourceNode.type === "decision") {
+      setModal({ show: true, type: "CONNECTION" });
+      setSelectedConnection(node);
+    }
   };
 
   // update title from modal input
   const setTitle = (value) => {
-    setSelectedNode((prev) => {
-      return { ...selectedNode, title: value };
-    });
+    setSelectedNode({ ...selectedNode, title: value });
+  };
+  // update type from modal input
+  const setType = (value) => {
+    setSelectedConnection({ ...selectedConnection, type: value });
   };
 
   return (
     <div className="my-16">
-      {showModal && (
+      {modal.show && (
         <Modal onCancel={onCancel}>
-          <EditNodeTitleContent
-            type="text"
-            label="edit title"
-            id="title"
-            value={selectedNode.title}
-            setValue={setTitle}
-            onSave={onSave}
-            onCancel={onCancel}
-          />
+          {modal.type === "NODE" ? (
+            <EditNodeTitleContent
+              type="text"
+              label="edit title"
+              id="title"
+              value={selectedNode.title}
+              setValue={setTitle}
+              onSave={onNodeSave}
+              onCancel={onCancel}
+            />
+          ) : (
+            <EditConnectionTypeContent
+              items={["fail", "success"]}
+              selected={selectedConnection.type}
+              setSelected={setType}
+              onSave={onConnectionSave}
+              onCancel={onCancel}
+            />
+          )}
         </Modal>
-      )}
+      )}j
       <Flowchart
         onChange={onChange}
         showToolbar={true}
         onDoubleClick={onDoubleClick}
         onNodeDoubleClick={handleNodeDoubleClick}
+        onConnectionDoubleClick={handleConnectionDoubleClick}
         style={{
           width: window?.innerWidth * 0.8, // 80% of the viewport width
           height: window?.innerHeight * 0.8, // 80% of the viewport height

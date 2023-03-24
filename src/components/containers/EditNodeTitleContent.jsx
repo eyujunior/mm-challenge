@@ -4,7 +4,7 @@ import Input from "../common/Input";
 
 const EditNodeTitleContent = (props) => {
   const [error, setError] = useState(false);
-  
+
   const handleSave = () => {
     // saves only if input is not empty
     if (props.value !== "") {
