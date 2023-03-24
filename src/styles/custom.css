@@ -1,0 +1,44 @@
+/* sidebar */
+div .flowchart-toolbar {
+  width: 120px;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.flowchart-toolbar {
+  padding-top: 1rem;
+}
+
+div .flowchart-svg {
+  background-color: white;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.flowchart-svg ellipse {
+  fill: #ff7e29;
+  stroke: black;
+}
+.flowchart-svg rect {
+  stroke: black;
+  fill: rgb(240, 222, 98);
+}
+.flowchart-svg polygon {
+  stroke: black;
+  fill: #5cee94;
+}
+.flowchart-toolbar-item {
+  margin: 0.2rem auto;
+}
+
+/* Nodes stroke animation */
+div .flowchart-svg ellipse,
+div .flowchart-svg rect,
+div .flowchart-svg polygon {
+  stroke-dasharray: 10;
+  stroke: #555;
+  animation: dash 1.5s ease-in-out forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 30;
+  }
+}

@@ -102,7 +102,8 @@ const FlowchartContainer = () => {
             />
           )}
         </Modal>
-      )}j
+      )}
+      j
       <Flowchart
         onChange={onChange}
         showToolbar={true}
@@ -113,8 +114,9 @@ const FlowchartContainer = () => {
           width: window?.innerWidth * 0.8, // 80% of the viewport width
           height: window?.innerHeight * 0.8, // 80% of the viewport height
           margin: "0 auto",
-          backgroundColor: "#5D21D1",
-          borderRadius: "1rem",
+          backgroundColor: "#111",
+          borderRadius: "0.5rem",
+          boxShadow: "0.2rem 0.3rem 1rem rgba(0, 0, 0, 0.1)",
         }}
         nodes={nodes}
         connections={connections}
