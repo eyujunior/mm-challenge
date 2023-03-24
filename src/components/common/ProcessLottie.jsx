@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import ProcessLottieJson from "../../assets/icons/process.json";
+import ProcessLottieJson from "../../assets/lottie/process.json";
 
 const style = {
   width: window?.innerWidth * 0.7,
