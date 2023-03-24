@@ -26,12 +26,13 @@ const FlowchartContainer = () => {
     dispatch(handleCreateNode({ serializable, zoom }));
   };
 
-  // handles changes like delete and
+  // handles changes like moved, disconnected, deleted, connected
   const onChange = (nodes, connections) => {
     dispatch(setNodes(nodes));
     dispatch(setConnections(connections));
   };
 
+  // close modal
   const onCancel = () => setShowModal(false);
 
   const onSave = () => {
@@ -40,11 +41,13 @@ const FlowchartContainer = () => {
     setSelectedNode({});
   };
 
-  const handleDoubleClick = (node) => {
+  // handles node title update
+  const handleNodeDoubleClick = (node) => {
     setShowModal(true);
     setSelectedNode(node);
   };
 
+  // update title from modal input
   const setTitle = (value) => {
     setSelectedNode((prev) => {
       return { ...selectedNode, title: value };
@@ -68,7 +71,7 @@ const FlowchartContainer = () => {
         onChange={onChange}
         showToolbar={true}
         onDoubleClick={onDoubleClick}
-        onNodeDoubleClick={handleDoubleClick}
+        onNodeDoubleClick={handleNodeDoubleClick}
         style={{
           width: window?.innerWidth * 0.8, // 80% of the viewport width
           height: window?.innerHeight * 0.8, // 80% of the viewport height
