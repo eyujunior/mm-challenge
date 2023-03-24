@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Flowchart from "flowchart-react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -20,6 +20,13 @@ const FlowchartContainer = () => {
   const [selectedConnection, setSelectedConnection] = useState({});
   const { nodes } = useSelector((state) => state.nodes);
   const { connections } = useSelector((state) => state.connections);
+
+
+  // everytime node and connection changes update on localstorage
+  useEffect(() => {
+    localStorage.setItem("connections", JSON.stringify(connections));
+    localStorage.setItem("nodes", JSON.stringify(nodes));
+  }, [nodes, connections])
 
   // handle node creation on background double click
   const onDoubleClick = (event, zoom) => {
@@ -45,8 +52,8 @@ const FlowchartContainer = () => {
     onCancel();
     setSelectedNode({});
   };
+
   const onConnectionSave = () => {
-    console.log(selectedConnection);
     dispatch(editConnection(selectedConnection));
     onCancel();
     setSelectedConnection({});
@@ -60,6 +67,7 @@ const FlowchartContainer = () => {
     });
     setSelectedNode(node);
   };
+
   // handles connection type on decision
   const handleConnectionDoubleClick = (node) => {
     const getSourceNode = nodes.find((item) => item.id === node.source.id);
@@ -69,11 +77,12 @@ const FlowchartContainer = () => {
     }
   };
 
-  // update title from modal input
+  // update node title from modal input
   const setTitle = (value) => {
     setSelectedNode({ ...selectedNode, title: value });
   };
-  // update type from modal input
+
+  // update connection type from modal input
   const setType = (value) => {
     setSelectedConnection({ ...selectedConnection, type: value });
   };

@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // get connections from localstorage if available
 const getFromLocalstorage = () => {
@@ -18,14 +18,9 @@ export const connectionSlice = createSlice({
         (item) => item.destination.id === action.payload.destination.id
       );
       selectedConnection.type = action.payload.type;
-      localStorage.setItem(
-        "connections",
-        JSON.stringify(current(state.connections))
-      );
     },
     setConnections: (state, action) => {
       state.connections = action.payload;
-      localStorage.setItem("connections", JSON.stringify(action.payload));
     },
   },
 });

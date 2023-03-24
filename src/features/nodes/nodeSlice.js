@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // get nodes from localstorage if available
 const getFromLocalstorage = () => {
@@ -25,14 +25,12 @@ export const nodeSlice = createSlice({
   reducers: {
     setNodes: (state, action) => {
       state.nodes = action.payload;
-      localStorage.setItem("nodes", JSON.stringify(action.payload));
     },
     editNode: (state, action) => {
       const selectedNode = state.nodes.find(
         (item) => item.id === action.payload.id
       );
       selectedNode.title = action.payload.title;
-      localStorage.setItem("nodes", JSON.stringify(current(state.nodes)));
     },
     handleCreateNode: (state, { payload }) => {
       const point = {
@@ -61,7 +59,6 @@ export const nodeSlice = createSlice({
         };
       }
       state.nodes.push(nodeData);
-      localStorage.setItem("nodes", JSON.stringify(current(state.nodes)));
     },
   },
 });
