@@ -13,10 +13,9 @@ const Button = ({ children, custom, handleClick, type, onBlur }) => {
 };
 
 Button.propTypes = {
-  children: PropTypes.element.isRequired,
   custom: PropTypes.string,
   handleClick: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onBlur: PropTypes.func,
 };
 
