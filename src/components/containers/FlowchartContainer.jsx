@@ -8,7 +8,7 @@ import {
 } from "../../features/nodes/nodeSlice";
 import { setConnections } from "../../features/connections/connectionSlice";
 import Modal from "../common/Modal";
-
+import EditNodeTitleContent from "./EditNodeTitleContent";
 const FlowchartContainer = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -57,15 +57,17 @@ const FlowchartContainer = () => {
   return (
     <div className="my-16">
       {showModal && (
-        <Modal
-          type="text"
-          label="edit title"
-          id="title"
-          value={selectedNode.title}
-          setValue={setTitle}
-          onSave={onSave}
-          onCancel={onCancel}
-        />
+        <Modal onCancel={onCancel}>
+          <EditNodeTitleContent
+            type="text"
+            label="edit title"
+            id="title"
+            value={selectedNode.title}
+            setValue={setTitle}
+            onSave={onSave}
+            onCancel={onCancel}
+          />
+        </Modal>
       )}
       <Flowchart
         onChange={onChange}
