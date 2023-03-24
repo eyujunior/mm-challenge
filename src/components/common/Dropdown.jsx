@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Dropdown = ({ selected, setSelected, items }) => {
   const [showList, setShowList] = useState(false);
@@ -56,6 +57,12 @@ const Dropdown = ({ selected, setSelected, items }) => {
       </div>
     </div>
   );
+};
+
+Dropdown.propTypes = {
+  selected: PropTypes.string.isRequired,
+  setSelected: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
 export default Dropdown;

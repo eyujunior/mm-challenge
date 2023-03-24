@@ -103,7 +103,7 @@ const FlowchartContainer = () => {
           )}
         </Modal>
       )}
-      j
+
       <Flowchart
         onChange={onChange}
         showToolbar={true}

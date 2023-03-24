@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../common/Button";
 import Input from "../common/Input";
+import PropTypes from "prop-types";
 
 const EditNodeTitleContent = (props) => {
   const [error, setError] = useState(false);
@@ -30,6 +31,11 @@ const EditNodeTitleContent = (props) => {
       </div>
     </div>
   );
+};
+
+EditNodeTitleContent.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default EditNodeTitleContent;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 const Button = ({ children, custom, handleClick, type, onBlur }) => {
   return (
     <button
@@ -9,6 +10,14 @@ const Button = ({ children, custom, handleClick, type, onBlur }) => {
       {children}
     </button>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.element.isRequired,
+  custom: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
 };
 
 export default Button;

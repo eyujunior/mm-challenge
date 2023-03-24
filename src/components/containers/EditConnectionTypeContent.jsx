@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../common/Button";
 import Dropdown from "../common/Dropdown";
+import PropTypes from "prop-types";
 
 const EditConnectionTypeContent = (props) => {
   return (
@@ -19,6 +20,11 @@ const EditConnectionTypeContent = (props) => {
       </div>
     </div>
   );
+};
+
+EditConnectionTypeContent.propTypes = {
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default EditConnectionTypeContent;

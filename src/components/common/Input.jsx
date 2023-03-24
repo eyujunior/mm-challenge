@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 const Input = ({ label, value, setValue, type, id, error }) => {
   return (
@@ -27,4 +28,12 @@ const Input = ({ label, value, setValue, type, id, error }) => {
   );
 };
 
+Input.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  error: PropTypes.bool.isRequired,
+};
 export default Input;
