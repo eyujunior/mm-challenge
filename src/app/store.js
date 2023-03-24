@@ -6,10 +6,5 @@ export const store = configureStore({
   reducer: {
     nodes: nodeReducer,
     connections: connectionReducer,
-    middleware: [
-      ...getDefaultMiddleware({
-        serializableCheck: false,
-      }),
-    ],
   },
 });
