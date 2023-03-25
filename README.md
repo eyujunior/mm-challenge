@@ -12,7 +12,7 @@ This project was created using
 
 ## Project Description
 
-A tool that is used create a clear, easy-to-read visualization of your desired process using flowcharts. one Assumption I made is that changing type of connections should be available only if source of the connection is a decision node. I've also tried to integrate a micro interaction on the nodes while they're active(being clicked, dragged) and on first load.
+A tool that is used create a clear, easy-to-read visualization of your desired process using flowcharts. one Assumption I made is that changing type of connections should be available only if source of the connection is a decision node. I wanted to create a landing page kind of feeling to it because I didn't want the first thing you see to be the flowchart. I've also tried to integrate a micro interaction on the nodes while they're active(being clicked, dragged) and on first load.
 
 Live link: https://eyobel-mm-challenge.netlify.app/
 
