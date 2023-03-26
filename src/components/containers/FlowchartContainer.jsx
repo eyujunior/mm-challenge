@@ -21,12 +21,11 @@ const FlowchartContainer = () => {
   const { nodes } = useSelector((state) => state.nodes);
   const { connections } = useSelector((state) => state.connections);
 
-
   // everytime node and connection changes update on localstorage
   useEffect(() => {
     localStorage.setItem("connections", JSON.stringify(connections));
     localStorage.setItem("nodes", JSON.stringify(nodes));
-  }, [nodes, connections])
+  }, [nodes, connections]);
 
   // handle node creation on background double click
   const onDoubleClick = (event, zoom) => {
@@ -89,29 +88,27 @@ const FlowchartContainer = () => {
 
   return (
     <div className="my-16">
-      {modal.show && (
-        <Modal onCancel={onCancel}>
-          {modal.type === "NODE" ? (
-            <EditNodeTitleContent
-              type="text"
-              label="edit title"
-              id="title"
-              value={selectedNode.title}
-              setValue={setTitle}
-              onSave={onNodeSave}
-              onCancel={onCancel}
-            />
-          ) : (
-            <EditConnectionTypeContent
-              items={["fail", "success"]}
-              selected={selectedConnection.type}
-              setSelected={setType}
-              onSave={onConnectionSave}
-              onCancel={onCancel}
-            />
-          )}
-        </Modal>
-      )}
+      <Modal isOpen={modal.show} onCancel={onCancel}>
+        {modal.type === "NODE" ? (
+          <EditNodeTitleContent
+            type="text"
+            label="edit title"
+            id="title"
+            value={selectedNode.title}
+            setValue={setTitle}
+            onSave={onNodeSave}
+            onCancel={onCancel}
+          />
+        ) : (
+          <EditConnectionTypeContent
+            items={["fail", "success"]}
+            selected={selectedConnection.type}
+            setSelected={setType}
+            onSave={onConnectionSave}
+            onCancel={onCancel}
+          />
+        )}
+      </Modal>
 
       <Flowchart
         onChange={onChange}

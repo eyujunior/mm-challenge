@@ -35,7 +35,7 @@ const EditNodeTitleContent = (props) => {
 
 EditNodeTitleContent.propTypes = {
   onCancel: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default EditNodeTitleContent;
