@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import ModalPortal from "../containers/ModalPortal";
+import { useDisableBodyScroll } from "../../hooks/useDisableBodyScroll";
 const Modal = ({ onCancel, children, isOpen }) => {
+  useDisableBodyScroll(isOpen);
   if (!isOpen) return null;
+
   return (
     <ModalPortal wrapperId="modal-portal-container">
       <div className="h-screen w-full fixed z-50 top-0 left-0 backdrop-blur-sm bg-black/20 flex items-center justify-center">
